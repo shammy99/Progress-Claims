@@ -1,20 +1,25 @@
 import pandas as pd
-Rates_Info = pd.read_csv("Rates.csv")
+############################################################################
+# CSV Files 
+#Rates_Info = pd.read_csv("Rates.csv")
 Variations_Info = pd.read_csv("Variations.csv")
-Posi_Truck = 143 #/hr
-Excavator_5_T = 121 #/hr
-Excavator_15_T = 135 #/hr
-Supervisor = 90 #/hr
-Spotter = 65 #/hr
-Asphalt_Disposal = 850 #/Truck
-Geotech_Inspection = 1430 #/hr
-Saw_Cut = 150 #/hr
-
+############################################################################
+# Rates 
+Posi_Truck = 143            #/hr
+Excavator_5_T = 121         #/hr
+Excavator_15_T = 135        #/hr
+Supervisor = 90             #/hr
+Spotter = 65                #/hr
+Asphalt_Disposal = 850      #/Truck
+Geotech_Inspection = 1430   #/hr
+Saw_Cut = 150               #/hr
+############################################################################
 Dates = []
 Resources = []
 Units = []
 Quantities = []
 Amounts = []
+
 for i in range(len(Variations_Info)):
     Date = Variations_Info.at[i,"Date"]
     Dates.append(Date)
@@ -41,8 +46,8 @@ for i in range(len(Variations_Info)):
         Amounts.append(Amount)
     else:
         print("Typo or not in if-statement!")
-    #Date = Rates_Info.at[i,"Date"]
-    
+
+############################################################################    
 Dates_Table = pd.DataFrame({'Date': Dates})
 Resources_Table = pd.DataFrame({'Resource': Resources})
 Units_Table = pd.DataFrame({'Unit': Units})
@@ -51,3 +56,4 @@ Amounts_Table = pd.DataFrame({'Amounts': Amounts})
 Final_Table = pd.concat([Dates_Table, Resources_Table, Units_Table, Quantities_Table, Amounts_Table], axis=1)
 print(Final_Table)
 Final_Table.to_csv("Completed_Variations.csv")
+############################################################################
